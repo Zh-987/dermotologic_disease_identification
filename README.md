@@ -4,6 +4,7 @@ This repository includes code for data preprocessing, model training, evaluation
 # Project Overview
 This project focuses on creating an efficient system for identifying dermatological diseases through the application of machine learning and deep learning algorithms. The primary goals are: <br>
 (FYI. The results of all the pictures are in the Kazakh language. This is because this scientific work was started in the Kazakh language but you can contribute it in any language.)
+(You can find detailed working with models in Jupiter notebook in the Models package)
 <li>Studying and implementing algorithms for disease classification. </li>
 <li>Developing a web-based application for image-based disease diagnosis. </li>
 <li>Providing insights and predictions in an intuitive user interface. </li>
