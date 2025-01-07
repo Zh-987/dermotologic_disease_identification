@@ -1,0 +1,81 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <style>
+  .carousel-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+    <div class="jumbotron">
+    <div class="row align-center">
+         <h1 class="display-4">Дерматология App</h1>
+        <p class="lead">Бұл қосымша дермотологиялық ауруды жіктеу үшін жасанды интеллект қолданылып жасалынған.</p>
+    </div>
+        <hr class="my-4">
+    </div>
+
+    <div class="container" style="padding-top: 40px; padding-bottom: 100px">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/img/predict.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Болжау</h5>
+                        <p class="card-text">Дерматологиялық ауруды сурет арқылы болжап, ауру анықталған жерден тері ауруын шығару.</p>
+                        <div class="row">
+                            <a href="{{ url_for('predict') }}" class="btn btn-primary">Жіктеу</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/img/dataset.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Деректер жинағы</h5>
+                        <p class="card-text">Бұл бетте жіктеу жасау үшін қолданылған деректер жинағымен танысуға болады.</p>
+                        <div class="row">
+                            <a href="{{ url_for('dataset') }}" class="btn btn-primary">Деректер жинағы</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/img/train.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Жаттықтыру</h5>
+                        <p class="card-text">Бұл бетте барлық деректер жинағын қайтадан жаттықтыруға болады.</p>
+                        <div class="row">
+                        <a href="{{ url_for('train') }}" class="btn btn-primary">Жаттықтыру</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/img/about.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Қосымша жайлы</h5>
+                        <p class="card-text">Бұл бетте қосымша жайлы ақпарат пен авторы және жасалу барысымен танысуға болады.</p>
+                        <div class="row">
+                        <a href="{{ url_for('about') }}" class="btn btn-primary">Қосымша жайлы</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

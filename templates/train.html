@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            <h2>Деректерді жаттықтыру</h2>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            <h4>Деректерді MobileNetV2 - де оқыту</h4>
+        </div>
+        <div class="card-body">
+            <form action="/train_button" method="post">
+                <div class="row">
+                    <button type="submit" class="btn btn-success">Жаттықтыру</button>
+                </div>
+            </form>
+            <div id="result"></div>
+        </div>
+    </div>
+
+{% endblock %}
+

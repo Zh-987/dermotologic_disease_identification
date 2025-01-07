@@ -1,0 +1,108 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            <h2>Деректер жинағы</h2>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            <h4>Жаңа дерек қосу</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label for="new_subfolder" class="form-label">Дерек аты:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" id="new_subfolder" name="new_subfolder" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" name="file" multiple class="form-control">
+                    </div>
+                    <div class="col-md-1">
+                        <input type="submit" value="Жаңа дерек пен суреттерді қосу" class="btn btn-success">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% for subfolder, image_paths in subfolder_data.items() %}
+        <div class="card" style="margin-bottom: 20px">
+            <div class="card-header">
+                <h4>{{ subfolder }}</h4>
+                <form method="post" enctype="multipart/form-data" style="position: absolute; top: 10px; right: 100px; display: inline;">
+                    <input type="file" name="file" onchange="uploadImage(this.files, '{{ subfolder }}')" style="display: none;" id="file_{{ subfolder }}">
+                    <label for="file_{{ subfolder }}" class="btn btn-success">Суретті қосу</label>
+                </form>
+                <button class="btn btn-danger" style="position: absolute; top: 10px; right: 10px;" onclick="deleteSubfolder('{{ subfolder }}')">Өшіру</button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for image_path in image_paths[:5] %}
+                        <div class="col-md-2">
+                            <img class="img-fluid" src="{{ image_path }}" alt="{{ subfolder }}">
+                        </div>
+                    {% endfor %}
+                <div class="col-md-2" style="display: flex; justify-content: center; align-items: center;">
+                    <a href="{{ url_for('showAll') }}">Толық көрсету</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <script>
+    function deleteSubfolder(subfolder) {
+        if (confirm('Осы деректі жойғыңыз келетініне сенімдіcіз бе?')) {
+            fetch('/delete_subfolder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({subfolder: subfolder}),
+            })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('Деректі жою кезінде қателік болды.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }
+
+    function uploadImage(files, subfolder) {
+        const formData = new FormData();
+        formData.append('subfolder', subfolder);
+        for (let i = 0; i < files.length; i++) {
+            formData.append('file', files[i]);
+        }
+
+        fetch('/upload_image', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Суреттерді жүктеу кезінде қателік болды.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+</script>
+{% endblock %}
+

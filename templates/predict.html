@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            <h2>Болжау</h2>
+        </div>
+    </div>
+
+    {% if prediction_result %}
+        <div class="card" style="margin-bottom: 20px">
+            <div class="card-header">
+                <h4>Болжау нәтижесі</h4>
+            </div>
+            <div class="card-body">
+                <h5>Нәтиже: {{ prediction_result }}</h5>
+                <h5>Accuracy: {{ prediction_accuracy }}</h5>
+                <img src="data:image/jpeg;base64,{{ encoded_image }}" alt="Selected Image" style="max-width: 400px;">
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            <h4>Болжау cуретін еңгізу және болжау</h4>
+        </div>
+        <div class="card-body">
+            <form action="/predict_button" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col">
+                        <input type="file" name="file" accept="image/*" class="form-control">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success">Болжау</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1 style="margin-bottom: 20px">Деректер жинағы</h1>
+
+{% for subfolder, image_paths in subfolder_data.items() %}
+    <div class="card" style="margin-bottom: 20px">
+        <div class="card-header">
+            <h2>{{ subfolder }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                {% for image_path in image_paths %}
+                    <div class="col-md-2">
+                        <img class="img-fluid" src="{{ image_path }}" alt="{{ subfolder }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
